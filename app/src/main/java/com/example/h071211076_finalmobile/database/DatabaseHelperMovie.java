@@ -85,13 +85,13 @@ public class DatabaseHelperMovie extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                String id = cursor.getString(cursor.getColumnIndex(COLUMN_ID));
-                String backdropPath = cursor.getString(cursor.getColumnIndex(COLUMN_BACKDROP_PATH));
-                String posterPath = cursor.getString(cursor.getColumnIndex(COLUMN_POSTER_PATH));
-                String overview = cursor.getString(cursor.getColumnIndex(COLUMN_OVERVIEW));
-                String originalTitle = cursor.getString(cursor.getColumnIndex(COLUMN_ORIGINAL_TITLE));
-                String releaseDate = cursor.getString(cursor.getColumnIndex(COLUMN_RELEASE_DATE));
-                double voteAverage = cursor.getDouble(cursor.getColumnIndex(COLUMN_VOTE_AVERAGE));
+                String id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                String backdropPath = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BACKDROP_PATH));
+                String posterPath = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POSTER_PATH));
+                String overview = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_OVERVIEW));
+                String originalTitle = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ORIGINAL_TITLE));
+                String releaseDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RELEASE_DATE));
+                double voteAverage = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_VOTE_AVERAGE));
 
                 ModelMovie movie = new ModelMovie(id, backdropPath, posterPath, overview, originalTitle, releaseDate, voteAverage);
                 favoriteMovies.add(movie);

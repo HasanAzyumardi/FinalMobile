@@ -26,7 +26,7 @@
         <ImageView
             android:id="@+id/ivMovie"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/speed"/>
 
@@ -46,6 +46,7 @@
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
                     android:maxLines="1"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:textAlignment="center"/>

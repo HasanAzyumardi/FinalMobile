@@ -1,6 +1,5 @@
 package com.example.h071211076_finalmobile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,12 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.h071211076_finalmobile.MainActivity;
-import com.example.h071211076_finalmobile.R;
 import com.example.h071211076_finalmobile.database.DatabaseHelperMovie;
-import com.squareup.picasso.Picasso;
-
 import com.example.h071211076_finalmobile.model.ModelMovie;
+import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -95,24 +91,9 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         isFavorite = !isFavorite;
 
-        // Check if isFavorite is false after toggling
-        if (!isFavorite) {
-            // Perform the deletion operation
-            deleteMovie();
-        }
-
+        // Update favorite button
         updateFavoriteButton();
     }
-
-    private void deleteMovie() {
-        boolean deleted = databaseHelper.deleteMovie(modelMovie.getId());
-        if (deleted) {
-            Toast.makeText(this, "Movie deleted", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Failed to delete movie", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     private void updateFavoriteButton() {
         if (isFavorite) {

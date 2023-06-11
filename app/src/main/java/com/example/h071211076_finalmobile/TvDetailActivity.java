@@ -1,5 +1,7 @@
 package com.example.h071211076_finalmobile;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,10 +14,10 @@ import com.example.h071211076_finalmobile.database.DatabaseHelperTv;
 import com.example.h071211076_finalmobile.model.ModelTv;
 import com.squareup.picasso.Picasso;
 
-public class  TvDetailActivity extends AppCompatActivity {
+public class TvDetailActivity extends AppCompatActivity {
     public static final String EXTRA_TV = "extra_tv";
-    private ImageView btn_backTv, backPoster, poster, ivFavourite, ivDelete;
-    private TextView tittleDetailTv, releaseDateDetailTv, textViewRating, TvDescDetail, tvOverviewDetail;
+    private ImageView btn_backTv, backPoster, poster, ivFavorite, ivDelete;
+    private TextView tittleDetailTv, releaseDateDetailTv, textViewRating, tvDescDetail, tvOverviewDetail;
 
     private boolean isFavorite;
 
@@ -35,11 +37,10 @@ public class  TvDetailActivity extends AppCompatActivity {
         tittleDetailTv = findViewById(R.id.titleTv);
         releaseDateDetailTv = findViewById(R.id.releaseDateTv);
         textViewRating = findViewById(R.id.tvRating);
-        TvDescDetail = findViewById(R.id.DescTv);
         tvOverviewDetail = findViewById(R.id.DescDetailTv);
         backPoster = findViewById(R.id.backPoster);
         poster = findViewById(R.id.poster);
-        ivFavourite = findViewById(R.id.btnLove);
+        ivFavorite = findViewById(R.id.btnLove);
 
         btn_backTv.setOnClickListener(view -> {
             finish();
@@ -55,11 +56,11 @@ public class  TvDetailActivity extends AppCompatActivity {
             releaseDate = modelTv.getFirstAirDate();
             posterPath = modelTv.getPosterPath();
             backdropPath = modelTv.getBackdropPath();
-            voteAverage = modelTv.getVoteAverage().toString();
+            voteAverage = String.valueOf(modelTv.getVoteAverage());
 
-            textViewRating.setText(voteAverage);
             tittleDetailTv.setText(title);
             releaseDateDetailTv.setText(releaseDate);
+            textViewRating.setText(voteAverage);
             tvOverviewDetail.setText(overview);
 
             Picasso.get()
@@ -72,7 +73,7 @@ public class  TvDetailActivity extends AppCompatActivity {
             isFavorite = databaseHelper.isTvShowFavorite(modelTv.getId());
             updateFavoriteButton();
 
-            ivFavourite.setOnClickListener(new View.OnClickListener() {
+            ivFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     toggleFavorite();
@@ -85,6 +86,10 @@ public class  TvDetailActivity extends AppCompatActivity {
         if (isFavorite) {
             databaseHelper.removeTvShowFromFavorites(modelTv.getId());
             Toast.makeText(this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+            // Memuat ulang data di FavouriteFragment setelah menghapus data
+            Intent intent = new Intent();
+            setResult(Activity.RESULT_OK, intent);
+
         } else {
             databaseHelper.addTvShowToFavorites(modelTv);
             Toast.makeText(this, "Added to favorites", Toast.LENGTH_SHORT).show();
@@ -92,13 +97,17 @@ public class  TvDetailActivity extends AppCompatActivity {
 
         isFavorite = !isFavorite;
         updateFavoriteButton();
+
+        // Memuat ulang data di FavouriteFragment setelah menghapus data
+        setResult(Activity.RESULT_OK);
     }
+
 
     private void updateFavoriteButton() {
         if (isFavorite) {
-            ivFavourite.setImageResource(R.drawable.loved);
+            ivFavorite.setImageResource(R.drawable.loved);
         } else {
-            ivFavourite.setImageResource(R.drawable.love);
+            ivFavorite.setImageResource(R.drawable.love);
         }
     }
 }
