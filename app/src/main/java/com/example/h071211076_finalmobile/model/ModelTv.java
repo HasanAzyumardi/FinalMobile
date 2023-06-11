@@ -21,21 +21,33 @@ public class ModelTv implements Parcelable {
     private String overview;
 
     @SerializedName("name")
-    private String originalTitle;
+    private String originalName;
 
     @SerializedName("first_air_date")
-    private String releaseDate;
+    private String firstAirDate;
 
     @SerializedName("vote_average")
     private Double voteAverage;
+    public ModelTv() {
+    }
+
+    public ModelTv(String id, String backdropPath, String posterPath, String overview, String originalName, String firstAirDate, Double voteAverage) {
+        this.id = id;
+        this.backdropPath = backdropPath;
+        this.posterPath = posterPath;
+        this.overview = overview;
+        this.originalName = originalName;
+        this.firstAirDate = firstAirDate;
+        this.voteAverage = voteAverage;
+    }
 
     protected ModelTv(Parcel in) {
         id = in.readString();
         backdropPath = in.readString();
         posterPath = in.readString();
         overview = in.readString();
-        originalTitle = in.readString();
-        releaseDate = in.readString();
+        originalName = in.readString();
+        firstAirDate = in.readString();
         if (in.readByte() == 0) {
             voteAverage = null;
         } else {
@@ -87,20 +99,20 @@ public class ModelTv implements Parcelable {
         this.overview = overview;
     }
 
-    public String getOriginalTitle() {
-        return originalTitle;
+    public String getOriginalName() {
+        return originalName;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getFirstAirDate() {
+        return firstAirDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setFirstAirDate(String firstAirDate) {
+        this.firstAirDate = firstAirDate;
     }
 
     public Double getVoteAverage() {
@@ -111,38 +123,24 @@ public class ModelTv implements Parcelable {
         this.voteAverage = voteAverage;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "ModelTv{" +
-                "id='" + id + '\'' +
-                ", backdropPath='" + backdropPath + '\'' +
-                ", posterPath='" + posterPath + '\'' +
-                ", overview='" + overview + '\'' +
-                ", originalTitle='" + originalTitle + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", voteAverage=" + voteAverage +
-                '}';
-    }
-
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(backdropPath);
-        dest.writeString(posterPath);
-        dest.writeString(overview);
-        dest.writeString(originalTitle);
-        dest.writeString(releaseDate);
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(backdropPath);
+        parcel.writeString(posterPath);
+        parcel.writeString(overview);
+        parcel.writeString(originalName);
+        parcel.writeString(firstAirDate);
         if (voteAverage == null) {
-            dest.writeByte((byte) 0);
+            parcel.writeByte((byte) 0);
         } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(voteAverage);
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(voteAverage);
         }
     }
 }

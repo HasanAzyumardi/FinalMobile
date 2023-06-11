@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_weight="2"
     android:background="#2b2b2b"
-    tools:context=".MovieDetailActivity">
+    tools:context=".TvDetailActivity">
 
     <ImageView
         android:id="@+id/backPoster"
@@ -15,7 +15,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/poster"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +90,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/titleMovie"
+            android:id="@+id/titleTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -105,7 +104,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/releaseDateMovie"
+            android:id="@+id/releaseDateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -116,7 +115,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/DescMovie"
+        android:id="@+id/DescTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -133,7 +132,7 @@
         app:layout_constraintTop_toTopOf="@+id/backPoster" />
 
     <TextView
-        android:id="@+id/DescDetailMovie"
+        android:id="@+id/DescDetailTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -148,18 +147,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backPoster" />
 
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/back"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="40dp"
+        android:elevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/back" />
+    </androidx.cardview.widget.CardView>
+
 
     <ImageView
-        android:id="@+id/ivFavorite"
+        android:id="@+id/btnLove"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
@@ -167,6 +176,5 @@
         android:src="@drawable/love"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

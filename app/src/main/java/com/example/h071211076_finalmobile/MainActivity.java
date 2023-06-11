@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         MovieFragment movieFragment = new MovieFragment();
         TvFragment tvFragment = new TvFragment();
+        FavouriteFragment favouriteFragment = new FavouriteFragment();
        switchFragment(movieFragment);
        tv.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -40,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
                 switchFragment(movieFragment);
             }
         }       );
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchFragment(favouriteFragment);
+            }
+        });
 
     }
         public void switchFragment(Fragment fragment){

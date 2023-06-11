@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-import kotlin.jvm.internal.SerializedIr;
-
 public class ModelMovie implements Parcelable{
 
     @SerializedName("id")
